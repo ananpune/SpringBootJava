@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Final</title>
+</head>
+<body style=background-color:violet;text-align:center;font-family:verdana>
+	<h1> Puneet Anand ananpune 991660474</h1>
+	
+	<h3 style=font-style:italic;text-align:center;>	
+		<table style=background-color:peru;text-align:center; th:if="${pluginevList != null AND pluginevList != ''}">
+		<tr th:each="p : ${pluginevList}">
+		 	<td th:text="${p.vehiclemake} + ' ' +  ${p.vehiclemodel} + ' '+ ${p.enginetype} + ' ' +${p.purchaseDate}+ ' ' +${p.purchaseTime}"></td>
+		 	<td><a th:href="@{/editPlugInEV/}+${p.id}">Edit</a></td>
+			<td><a th:href="@{/deletePlugInEV/}+${p.id}">Delete</a></td>
+		</tr>
+		</table>
+	<form method="post" action="" th:action="@{/insertPlugInEV}" th:object="${pluginev}">
+		<input type="hidden" name="id" th:field="*{id}"/>
+		vehicle make: <input style=font-style:italic type="text" name="vehiclemake" th:field="*{vehiclemake}" id="vehiclemake" /><br>
+		vehicle model: <input style=font-style:italic type="text" name="vehiclemodel" th:field="*{vehiclemodel}" id="vehiclemodel"/><br>
+		engine type: <input style=font-style:italic type="text" name="enginetype" th:field="*{enginetype}" id="enginetype"/><br>
+		purchase date:  <input style=font-style:italic type="date" name="purchaseDate" th:field="*{purchaseDate}" id="date"/><br>
+		departure time: <input style=font-style:italic type="time" name="purchaseTime" th:field="*{purchaseTime}" id="time"/><br>
+		<br><br>
+		<input type="submit" value="Go!" style="height:50px; width:100px"/>
+	</form>
+	</h3>
+	<footer th:replace="fragments/footer.html :: footer"></footer>
+
+
+</body>
+</html>
